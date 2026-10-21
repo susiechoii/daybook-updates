@@ -2,7 +2,7 @@
   {
     "version": "1.2.3",
     "date": "2026-10-21",
-    "notes": "Korean language option in Settings. Checks for updates every hour. The Market page now says when FRED, its data source, is down instead of calling you offline."
+    "notes": "Korean language option in Settings. Checks for updates every hour."
   },
   {
     "version": "1.2.2",
