@@ -1,7 +1,7 @@
 {
-  "version": "1.2.2",
+  "version": "1.2.3",
   "date": "2026-10-21",
-  "notes": "Updates install without a stuck command window.",
-  "bundle": "daybook-1.2.2.bin",
-  "signature": "1Npv+8oJvAcVxMaKRXABh1Mp+/OQfAlTW5PCfVhcTY6yQ3oo6gvmf0j6MknSBJJOSGU88Wp4tVi4s978y777Bg=="
+  "notes": "Korean language option in Settings. Checks for updates every hour.",
+  "bundle": "daybook-1.2.3.bin",
+  "signature": "M4fjBERYpTtl0/G5X46mIwqnsHdNiKHXWuGrX725cDjzQ8JIGfnEhKunRfZ1MSTtyiYODd3K8lSzyQHOjsfTCA=="
 }

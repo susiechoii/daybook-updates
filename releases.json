@@ -1,5 +1,10 @@
 [
   {
+    "version": "1.2.3",
+    "date": "2026-10-21",
+    "notes": "Korean language option in Settings. Checks for updates every hour."
+  },
+  {
     "version": "1.2.2",
     "date": "2026-10-21",
     "notes": "Updates install without a stuck command window."
