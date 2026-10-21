@@ -1,7 +1,7 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "date": "2026-10-21",
-  "notes": "First version that updates itself.",
-  "bundle": "daybook-1.2.0.bin",
-  "signature": "V4VGEhMURV9MPdhNK9E3SheA72oztNU9qVXvY2R/C4CEdrvXeIO/jBW4oTkCi1UWKyG9zQC83TSU60uZPXNVBg=="
+  "notes": "Shorter, clearer wording on the Market and Settings pages.",
+  "bundle": "daybook-1.2.1.bin",
+  "signature": "9N/BRDQ7zieMgWxtvNwElFwFjqj4eqvtuXm7tjWOnWehLgAjxsgniu7TqyTB9wokdwLOtsyY6mKspxfx8vE5Ag=="
 }
