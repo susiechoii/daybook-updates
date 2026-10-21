@@ -1,5 +1,10 @@
 [
   {
+    "version": "1.2.2",
+    "date": "2026-10-21",
+    "notes": "Updates install without a stuck command window."
+  },
+  {
     "version": "1.2.1",
     "date": "2026-10-21",
     "notes": "Shorter, clearer wording on the Market and Settings pages."
