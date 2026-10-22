@@ -1,5 +1,10 @@
 [
   {
+    "version": "1.2.4",
+    "date": "2026-10-22",
+    "notes": "Week view: task circles now line up with their titles"
+  },
+  {
     "version": "1.2.3",
     "date": "2026-10-21",
     "notes": "Korean language option in Settings. Checks for updates every hour."
