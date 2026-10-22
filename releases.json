@@ -1,5 +1,10 @@
 [
   {
+    "version": "1.2.5",
+    "date": "2026-10-22",
+    "notes": "Short tasks are centered in their boxes and no longer hide behind each other"
+  },
+  {
     "version": "1.2.4",
     "date": "2026-10-22",
     "notes": "Week view: task circles now line up with their titles"
