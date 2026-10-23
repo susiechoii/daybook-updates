@@ -1,7 +1,7 @@
 {
-  "version": "1.2.5",
-  "date": "2026-10-22",
-  "notes": "Short tasks are centered in their boxes and no longer hide behind each other",
-  "bundle": "daybook-1.2.5.bin",
-  "signature": "OWbJeUDkcWZIeqDmPH1yN8GswVoc/QyXwZLBhPtY5fJ0slgGOF7dRA/jryLyQP0DIzIHJ1Dhk1OaIMFP7oe6Dw=="
+  "version": "1.2.6",
+  "date": "2026-10-23",
+  "notes": "New bell next to the search bar shows what's still coming up today and over the next week",
+  "bundle": "daybook-1.2.6.bin",
+  "signature": "7I9zk798Nu9Tt0nd41cqM9s5b9KCABP93/B5aFi/YwEZriSubDWnxanof1JksOI+S63R2KclNhhFGkiI/nZIBQ=="
 }
