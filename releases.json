@@ -1,8 +1,8 @@
 [
   {
-    "version": "1.2.7",
+    "version": "1.2.8",
     "date": "2026-10-23",
-    "notes": "The bell's number clears once you've opened it and only comes back for something new."
+    "notes": "Notification bell optimizations."
   },
   {
     "version": "1.2.6",
