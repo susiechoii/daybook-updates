@@ -1,5 +1,10 @@
 [
   {
+    "version": "1.3.1",
+    "date": "2026-10-26",
+    "notes": "Charts in Reports: add bar charts like sales by customer, paste the numbers straight from Excel, and next week's report keeps them."
+  },
+  {
     "version": "1.3.0",
     "date": "2026-10-26",
     "notes": "New Style picker in Reports: choose Daybook, Modern, Corporate (with a 결재 sign-off box) or Minimal for your report's look."

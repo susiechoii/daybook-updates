@@ -1,7 +1,7 @@
 {
-  "version": "1.3.0",
+  "version": "1.3.1",
   "date": "2026-10-26",
-  "notes": "New Style picker in Reports: choose Daybook, Modern, Corporate (with a 결재 sign-off box) or Minimal for your report's look.",
-  "bundle": "daybook-1.3.0.bin",
-  "signature": "L4mcWFt84zSXgqg/UER8Wm0ZCQajscgTynaREcJareL93TdoKtWKJseNoqtI7JB7KTr64sv3+dNMWmCSPWwIBw=="
+  "notes": "Charts in Reports: add bar charts like sales by customer, paste the numbers straight from Excel, and next week's report keeps them.",
+  "bundle": "daybook-1.3.1.bin",
+  "signature": "t01ZAtg6UqxgOZE7RThGJlTiBVg6vss+TJtE6zc5x69pHzRO9nlr9GW6e8yBvdI85qgdp4+ss48f2LB6GutjBA=="
 }
