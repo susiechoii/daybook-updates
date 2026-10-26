@@ -1,7 +1,7 @@
 {
-  "version": "1.2.8",
-  "date": "2026-10-23",
+  "version": "1.2.9",
+  "date": "2026-10-26",
   "notes": "Notification bell optimizations.",
-  "bundle": "daybook-1.2.8.bin",
-  "signature": "J+4Hl7Ja+1TsO5l8bDEV5wRUI4pJvdLxY+S0E+J8Q4WFM3Viapp3GnIQe4WzeXHpAxe54cCzSStF6fdK4vm1Cg=="
+  "bundle": "daybook-1.2.9.bin",
+  "signature": "O0p2dtOEGXPO9p7Qae1apKpN/OLQ3Vn336MuoCYz6kN0oteoHvi3XbRERvRYeG6JyeMEISss6h6pNCfaE5PgBg=="
 }
