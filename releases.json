@@ -1,5 +1,10 @@
 [
   {
+    "version": "1.3.3",
+    "date": "2026-10-26",
+    "notes": "Charts and pictures in reports: paste a chart from Excel with Ctrl+V right between your bullets, add bar charts or pictures from the toolbar, and drag a corner to resize them."
+  },
+  {
     "version": "1.3.1",
     "date": "2026-10-26",
     "notes": "Charts in Reports: add bar charts like sales by customer, paste the numbers straight from Excel, and next week's report keeps them."
