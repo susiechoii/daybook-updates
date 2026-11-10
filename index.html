@@ -137,7 +137,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   <div class="links">
     <a href="#install">Install</a>
     <a href="#changelog">Changelog</a>
-    <a class="btn sm" href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe">Download</a>
+    <a class="btn sm" href="#install">Download</a>
   </div>
 </div></nav>
 
@@ -147,7 +147,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   <p class="lead">An all-in-one scheduling tool for employees.</p>
   <div class="ctas">
     <a class="btn" href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe">Download for Windows</a>
-        <span class="fine">Free. Works on Windows 10 and 11.</span>
+    <a class="btn" href="#install">Download for Mac</a>
+    <span class="fine">Free. Works on Windows 10 and 11 and on Macs.</span>
   </div>
   <img class="shot" src="today.png" width="1863" height="1034" alt="Daybook's Today view: a timeline of the day's events next to the task list">
 </div></header>
@@ -166,12 +167,20 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 
 <section id="install"><div class="wrap">
   <h2>Install</h2>
-    <ol class="steps">
+  <h3 class="os">Windows</h3>
+  <ol class="steps">
     <li><a href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe">Download Daybook-Setup.exe</a> and open it.</li>
     <li>If Windows shows a warning, click More info, then Run anyway, then Install.</li>
     <li>Daybook opens when it's done and adds itself to the Start menu.</li>
   </ol>
-  </div></section>
+  <h3 class="os">Mac</h3>
+  <ol class="steps">
+    <li>Download Daybook for <a href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Mac-AppleSilicon.dmg">Apple Silicon (M1 or newer)</a> or for <a href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Mac-Intel.dmg">Intel</a>. Not sure which? Apple menu › About This Mac shows the chip.</li>
+    <li>Open the downloaded file and drag Daybook onto Applications.</li>
+    <li>Open Daybook from Applications. The first time, macOS says it can't check it: click Done, then go to System Settings › Privacy &amp; Security, scroll down and click Open Anyway.</li>
+    <li>If macOS says Daybook is damaged, open Terminal, run <code>xattr -cr /Applications/Daybook.app</code> and open it again.</li>
+  </ol>
+</div></section>
 
 <section id="changelog"><div class="wrap">
   <h2>Changelog</h2>
@@ -187,7 +196,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 
 <footer><div class="wrap">
   <span>Daybook 1.3.5, released November 10, 2026</span>
-  <a href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe">Download</a>
+  <a href="#install">Download</a>
 </div></footer>
 
 <script>
