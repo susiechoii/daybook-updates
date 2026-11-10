@@ -8,242 +8,199 @@
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
 <style>
+/* Colours and type follow the app (app/renderer/styles.css), with the paper warmed up a little. */
 :root {
-  --bg: #09080f;
-  --panel: #110f1b;
-  --line: rgba(255, 255, 255, 0.08);
-  --line-2: rgba(255, 255, 255, 0.14);
-  --fg: #f4f2fb;
-  --muted: #9b97b2;
-  --dim: #6c6884;
-  --rose: #e0496d;
-  --green: #34d399;
-  --grad: linear-gradient(120deg, #ffb3c4 0%, #f2728f 50%, #e0496d 100%);
-  color-scheme: dark;
+  --paper: #f5f3ef;
+  --surface: #ffffff;
+  --surface-2: #efece6;
+  --ink: #1b2433;
+  --ink-2: #4a5568;
+  --muted: #7a8494;
+  --line: #e4e0d8;
+  --accent: #3446c4;
+  --accent-soft: #e7eafb;
+  --now: #e0446a;
+  --shadow: 0 1px 2px rgba(27, 36, 51, .06), 0 8px 24px -12px rgba(27, 36, 51, .18);
+  --shadow-big: 0 2px 6px rgba(27, 36, 51, .06), 0 30px 60px -24px rgba(27, 36, 51, .35);
+  --display: 'Bricolage Grotesque', 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
+  --text: 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #161a21; --surface: #1d222b; --surface-2: #242a35;
+    --ink: #e7eaf0; --ink-2: #bac2cf; --muted: #8590a0; --line: #2e3542;
+    --accent: #8e9bff; --accent-soft: #283058; --now: #ff6b8e;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+    --shadow-big: 0 2px 6px rgba(0,0,0,.35), 0 30px 60px -24px rgba(0,0,0,.7);
+    color-scheme: dark;
+  }
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--fg); overflow-x: hidden; font: 16px/1.6 Inter, "Segoe UI", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-a { color: inherit; text-decoration: none; }
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16.5px/1.6 var(--text); -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+.display { font-family: var(--display); font-stretch: 85%; letter-spacing: -.01em; }
 
-/* backdrop: glow + fading grid */
-.backdrop { position: absolute; inset: 0 0 auto; height: 1100px; pointer-events: none; overflow: hidden; }
-.backdrop::before {
-  content: ""; position: absolute; inset: 0;
-  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 64px 64px; opacity: .55;
-  mask-image: radial-gradient(ellipse 70% 55% at 50% 20%, #000 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 20%, #000 30%, transparent 75%);
-}
-.glow { position: absolute; border-radius: 50%; filter: blur(90px); }
-.glow.a { width: 620px; height: 620px; left: 50%; top: -260px; transform: translateX(-60%); background: #9f1d45; opacity: .5; animation: drift 14s ease-in-out infinite alternate; }
-.glow.b { width: 420px; height: 420px; left: 56%; top: 40px; background: var(--rose); opacity: .3; animation: drift 18s ease-in-out infinite alternate-reverse; }
-@keyframes drift { to { transform: translate(-40%, 40px) scale(1.08); } }
+.btn { display: inline-flex; align-items: center; gap: 9px; height: 44px; padding: 0 20px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 600; font-size: 15.5px; }
+.btn:hover { text-decoration: none; background: color-mix(in srgb, var(--accent) 88%, var(--ink)); }
+.btn.sm { height: 34px; padding: 0 14px; border-radius: 8px; font-size: 14.5px; }
+@media (prefers-color-scheme: dark) { .btn { color: #10142a; } }
 
-/* nav */
-nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); background: rgba(9, 8, 15, .62); border-bottom: 1px solid var(--line); }
-nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -.01em; }
-.brand img { width: 30px; height: 30px; filter: drop-shadow(0 0 1px rgba(255,255,255,.35)) drop-shadow(0 0 14px rgba(224, 73, 109, .35)); }
-.links { display: flex; align-items: center; gap: 28px; font-size: 14px; color: var(--muted); }
-.links a:not(.btn):hover { color: var(--fg); }
-.pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line-2); background: rgba(255,255,255,.03); font-size: 13px; color: var(--muted); }
-.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
-.btn { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: 12px; font-weight: 600; font-size: 15px; transition: transform .15s, box-shadow .2s, background .2s, border-color .2s; }
-.btn.primary { background: #fff; color: #0b0a14; box-shadow: 0 8px 30px rgba(224, 73, 109, .3); }
-.btn.primary:hover { transform: translateY(-1px); box-shadow: 0 12px 40px rgba(224, 73, 109, .45); }
-.btn.ghost { border: 1px solid var(--line-2); background: rgba(255,255,255,.03); }
-.btn.ghost:hover { border-color: rgba(224, 73, 109, .6); background: rgba(224, 73, 109, .08); }
-.btn.sm { height: 34px; padding: 0 14px; font-size: 13.5px; border-radius: 9px; box-shadow: none; }
+/* top bar */
+nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font: 700 21px/1 var(--display); font-stretch: 85%; }
+.brand:hover { text-decoration: none; }
+.brand img { width: 30px; height: 30px; }
+.links { display: flex; align-items: center; gap: 24px; font-size: 15px; }
+.links a:not(.btn) { color: var(--ink-2); }
 
-/* hero */
-header { position: relative; text-align: center; padding: 96px 0 0; }
-header .pill { margin-bottom: 28px; }
-h1 { font-size: clamp(44px, 7.6vw, 84px); line-height: 1.02; letter-spacing: -.045em; font-weight: 800; margin: 0 0 20px; }
-.grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.lead { font-size: clamp(17px, 2vw, 20px); color: var(--muted); margin: 0 auto 36px; }
-.ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.fine { margin: 16px 0 0; font-size: 13px; color: var(--dim); }
-
-/* screenshot: tilts toward the pointer, flattens as it scrolls into view */
-.stage { margin: 72px auto 0; max-width: 1000px; perspective: 1400px; }
-.shot {
-  --rx: 14deg; --ry: 0deg; --gx: 50%; --gy: 0%;
-  position: relative; border-radius: 16px; transform: rotateX(var(--rx)) rotateY(var(--ry)); transform-style: preserve-3d;
-  transition: transform .5s cubic-bezier(.2, .7, .2, 1); will-change: transform;
-  box-shadow: 0 50px 120px -20px rgba(0,0,0,.7), 0 0 0 1px var(--line-2);
-}
-.shot.live { transition: transform .12s ease-out; }
-.shot::before { content: ""; position: absolute; inset: 8% 6% -8%; background: var(--grad); filter: blur(80px); opacity: .3; transform: translateZ(-80px); z-index: -1; }
-.shot img { display: block; width: 100%; height: auto; border-radius: 16px; }
-.shot::after { content: ""; position: absolute; inset: 0; border-radius: 16px; pointer-events: none; background: radial-gradient(600px circle at var(--gx) var(--gy), rgba(255,255,255,.10), transparent 45%); }
+/* opening, laid out like the app's Today header */
+header { padding: 48px 0 0; }
+.stamp { display: flex; align-items: flex-end; gap: 12px; }
+.num { font: 700 84px/.78 var(--display); font-stretch: 75%; letter-spacing: -.035em; font-variation-settings: 'opsz' 96; }
+.words { display: flex; flex-direction: column; gap: 4px; padding-bottom: 1px; }
+.words b { font: 650 24px/1 var(--display); font-stretch: 85%; letter-spacing: -.01em; }
+.words span { color: var(--muted); font-weight: 500; }
+header .stamp { margin-bottom: 36px; }
+header .stamp[hidden] { display: none; }
+h1 { margin: 0 0 16px; font: 700 clamp(42px, 6.5vw, 68px)/1.02 var(--display); font-stretch: 80%; letter-spacing: -.025em; }
+.lead { margin: 0 0 28px; font-size: 19px; color: var(--ink-2); max-width: 30em; }
+.ctas { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.fine { color: var(--muted); font-size: 14.5px; }
+.shot { display: block; width: 100%; height: auto; margin: 56px 0 0; border-radius: 12px; border: 1px solid var(--line); box-shadow: var(--shadow-big); }
 
 /* sections */
-section { position: relative; padding: 120px 0 0; }
-h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: -.035em; margin: 0 0 12px; font-weight: 800; }
-.sub { color: var(--muted); max-width: 540px; margin: 0 0 40px; font-size: 17px; }
+section { padding: 96px 0 0; }
+h2 { margin: 0 0 24px; display: flex; align-items: center; gap: 10px; font: 700 30px/1 var(--display); font-stretch: 85%; letter-spacing: -.01em; }
+.count { font: 600 12.5px/1 var(--text); color: var(--muted); padding: 4px 7px; border-radius: 6px; background: var(--surface-2); letter-spacing: 0; }
 
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.card { position: relative; padding: 24px; border-radius: 16px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01)); transition: transform .25s; }
-.card::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: var(--grad); opacity: 0; transition: opacity .25s; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
-.card:hover { transform: translateY(-3px); }
-.card:hover::after { opacity: .8; }
-.icon { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; background: rgba(224, 73, 109, .12); color: #f5a3b8; margin-bottom: 16px; }
-.icon svg { width: 19px; height: 19px; }
-.card h3 { margin: 0 0 4px; font-size: 16.5px; letter-spacing: -.01em; }
-.card p { margin: 0; color: var(--muted); font-size: 14.5px; }
-code, .mono { font: 500 12.5px "JetBrains Mono", monospace; }
-.card code { white-space: nowrap; color: #fbd0db; background: rgba(224, 73, 109, .12); padding: 1px 6px; border-radius: 5px; }
+/* features, as rows in the app's task list */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 10px 14px; }
+.tasks { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin: 0; padding: 0; list-style: none; }
+.tasks li { display: flex; gap: 14px; padding: 14px 6px; }
+.tasks li:nth-child(n+3) { border-top: 1px solid var(--line); }
+.check { width: 20px; height: 20px; flex: none; margin-top: 3px; border-radius: 50%; border: 1.75px solid var(--c); }
+.tasks b { display: block; font-weight: 600; font-size: 17px; }
+.tasks span { color: var(--muted); font-size: 15px; }
+.say { color: var(--ink-2); }
 
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: step; }
-.step { padding: 24px; border-radius: 16px; border: 1px solid var(--line); background: var(--panel); }
-.step::before { counter-increment: step; content: "0" counter(step); font: 500 12px "JetBrains Mono", monospace; color: var(--dim); }
-.step p { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
-.step b { color: var(--fg); font-weight: 600; }
+/* install */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin: 0; padding: 0; list-style: none; }
+.steps li { display: flex; gap: 14px; align-items: flex-start; color: var(--ink-2); }
+.steps .num { font-size: 64px; color: var(--muted); opacity: .55; flex: none; min-width: 30px; }
+.steps b { color: var(--ink); font-weight: 600; }
+.steps p { margin: 0; }
+.aside { margin: 28px 0 0; color: var(--muted); font-size: 15px; }
 
-/* changelog */
-.log { position: relative; max-width: 760px; }
-.log::before { content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(var(--rose), transparent); }
-.rel { position: relative; padding: 0 0 32px 44px; }
-.rel::before { content: ""; position: absolute; left: 0; top: 5px; width: 17px; height: 17px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line-2); }
-.rel.latest::before { border-color: var(--rose); box-shadow: 0 0 0 4px rgba(224, 73, 109, .15), 0 0 16px var(--rose); }
-.rel .meta { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
-.rel .v { font: 500 15px "JetBrains Mono", monospace; }
-.rel .d { color: var(--dim); font-size: 14px; }
-.rel .new { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; background: var(--grad); color: #2b0a15; }
-.rel p { margin: 0; color: var(--muted); }
+/* what's new: filled in by scripts/site-page.mjs, one block per day like the app's timeline */
+.log { display: flex; flex-direction: column; gap: 32px; }
+.day { display: grid; grid-template-columns: 240px 1fr; gap: 24px; align-items: start; }
+.day .num { font-size: 56px; }
+.day .words b { font-size: 19px; }
+.day .words span { font-size: 14.5px; }
+.items { display: flex; flex-direction: column; gap: 8px; }
+.item { background: var(--surface); border-radius: 8px; padding: 12px 16px 12px 18px; box-shadow: inset 3px 0 0 var(--accent), inset 0 0 0 1px var(--line); }
+.item p { margin: 0 0 4px; }
+.ver { font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tag { margin-left: 6px; font-size: 12px; font-weight: 700; color: #fff; background: var(--now); border-radius: 5px; padding: 1px 7px; }
+.item.latest { box-shadow: inset 3px 0 0 var(--now), inset 0 0 0 1px var(--line); }
+.day:nth-child(n+6) { display: none; }
+.log.all .day { display: grid; }
+.more { margin: 24px 0 0 264px; padding: 0; border: 0; background: none; font: 600 15px var(--text); color: var(--accent); cursor: pointer; }
+.more:hover { text-decoration: underline; text-underline-offset: 3px; }
+.log.all + .more, .log:not(:has(.day:nth-child(6))) + .more { display: none; }
 
-footer { margin-top: 120px; border-top: 1px solid var(--line); padding: 28px 0 44px; color: var(--dim); font-size: 14px; }
+footer { margin-top: 110px; border-top: 1px solid var(--line); padding: 28px 0 44px; color: var(--muted); font-size: 14.5px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-footer a:hover { color: var(--fg); }
 
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.in { opacity: 1; transform: none; }
-
-@media (max-width: 900px) { .grid, .steps { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 620px) {
+@media (max-width: 760px) {
   .links a:not(.btn) { display: none; }
-  header { padding-top: 64px; }
-  .grid, .steps { grid-template-columns: 1fr; }
-  .stage { margin-top: 48px; }
-  section { padding-top: 88px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .reveal { opacity: 1; transform: none; }
-  .shot { --rx: 0deg !important; --ry: 0deg !important; }
+  header { padding-top: 24px; }
+  header .stamp { margin-bottom: 28px; }
+  .shot { margin-top: 40px; border-radius: 8px; }
+  section { padding-top: 72px; }
+  .tasks { grid-template-columns: 1fr; }
+  .tasks li + li:nth-child(2) { border-top: 1px solid var(--line); }
+  .steps { grid-template-columns: 1fr; gap: 18px; }
+  .steps .num { font-size: 48px; }
+  .day { grid-template-columns: 1fr; gap: 12px; }
+  .day .num { font-size: 44px; }
+  .more { margin-left: 0; }
 }
 </style>
 </head>
 <body>
-<div class="backdrop"><div class="glow a"></div><div class="glow b"></div></div>
 
 <nav><div class="wrap">
   <a class="brand" href="#"><img src="icon.png" alt="">Daybook</a>
   <div class="links">
-    <a href="#features">Features</a>
     <a href="#install">Install</a>
     <a href="#changelog">Changelog</a>
-    <a class="btn primary sm" href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe">Download</a>
+    <a class="btn sm" href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe">Download</a>
   </div>
 </div></nav>
 
 <header><div class="wrap">
-  <span class="pill"><span class="dot"></span>Version 1.3.3 · October 26, 2026</span>
-  <h1>Plan your day<br><span class="grad">in one place.</span></h1>
-  <p class="lead">Calendar, tasks and reminders for Windows.</p>
+  <div class="stamp" id="today" hidden><span class="num"></span><span class="words"><b></b><span></span></span></div>
+  <h1>Plan your day in one place.</h1>
+  <p class="lead">An all-in-one scheduling tool for employees.</p>
   <div class="ctas">
-    <a class="btn primary" href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zm0 13 7.5 1.1v-7H3zm8.4 1.3L21 21V12.6h-9.6zm0-15.6v7.4H21V3z"/></svg>Download for Windows</a>
-    <a class="btn ghost" href="#changelog">Changelog</a>
+    <a class="btn" href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe">Download for Windows</a>
+    <span class="fine">Free · Windows 10 and 11</span>
   </div>
-  <p class="fine">Windows 10 and 11 · Free</p>
-
-  <div class="stage"><div class="shot" id="shot"><img src="today.png" width="1863" height="1034" alt="Daybook's Today view: a timeline of the day's events next to the task list"></div></div>
+  <img class="shot" src="today.png" width="1863" height="1034" alt="Daybook's Today view: a timeline of the day's events next to the task list">
 </div></header>
 
 <section id="features"><div class="wrap">
-  <h2 class="reveal">Features</h2>
-  <p class="sub reveal">Everything for the day in one window.</p>
-  <div class="grid">
-    <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div><h3>Quick add</h3><p>Press Ctrl+Shift+Space anywhere and type <code>dentist thu 10am</code>.</p></div>
-    <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><h3>Day, week and month</h3><p>Drag to move things. Drag an edge to change the length.</p></div>
-    <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21a2 2 0 0 0 4 0"/></svg></div><h3>Reminders</h3><p>Windows notifications with Snooze and Done buttons.</p></div>
-    <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 11 3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h11"/></svg></div><h3>Plan my day</h3><p>Fits your tasks into the free time on your calendar.</p></div>
-    <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></div><h3>Market</h3><p>Indicators and stock prices, updated every 6 hours.</p></div>
-    <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div><h3>Weekly reports</h3><p>Write up your week and save it as a PDF.</p></div>
-  </div>
+  <h2>Features <span class="count">6</span></h2>
+  <div class="panel"><ul class="tasks">
+    <li><i class="check" style="--c:#3446c4"></i><div><b>Quick add</b><span>Press Ctrl+Shift+Space anywhere and type <span class="say">“dentist thu 10am”</span></span></div></li>
+    <li><i class="check" style="--c:#3b8a55"></i><div><b>Day, week and month</b><span>Drag to move things, drag an edge to change the length</span></div></li>
+    <li><i class="check" style="--c:#c8436c"></i><div><b>Reminders</b><span>Windows notifications with Snooze and Done buttons</span></div></li>
+    <li><i class="check" style="--c:#b07a12"></i><div><b>Plan my day</b><span>Fits your tasks into the free time on your calendar</span></div></li>
+    <li><i class="check" style="--c:#7352be"></i><div><b>Weekly reports</b><span>Bullets, charts and pictures, saved as a PDF</span></div></li>
+    <li><i class="check" style="--c:#19817f"></i><div><b>Market</b><span>Indicators and stock prices, updated every 6 hours</span></div></li>
+  </ul></div>
 </div></section>
 
 <section id="install"><div class="wrap">
-  <h2 class="reveal">Install</h2>
-  <p class="sub reveal">Updates install automatically after that. Your data stays on your computer.</p>
-  <div class="steps">
-    <div class="step reveal"><p><a href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe"><b>Download</b></a> <b>Daybook-Setup.exe</b> and run it.</p></div>
-    <div class="step reveal"><p>If Windows warns you, click <b>More info</b>, then <b>Run anyway</b>. Then click <b>Install</b>.</p></div>
-    <div class="step reveal"><p>Daybook opens and adds itself to the Start menu.</p></div>
-  </div>
+  <h2>Install</h2>
+  <ol class="steps">
+    <li><span class="num">1</span><p><a href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe"><b>Download</b></a> <b>Daybook-Setup.exe</b> and run it.</p></li>
+    <li><span class="num">2</span><p>If Windows warns you, click <b>More info</b>, then <b>Run anyway</b>. Then click <b>Install</b>.</p></li>
+    <li><span class="num">3</span><p>Daybook opens and adds itself to the Start menu.</p></li>
+  </ol>
+  <p class="aside">Updates install automatically after that. Your data stays on your computer.</p>
 </div></section>
 
 <section id="changelog"><div class="wrap">
-  <h2 class="reveal">Changelog</h2>
-  <p class="sub reveal">Newest first.</p>
-  <div class="log">
-    <div class="rel latest reveal"><div class="meta"><span class="v">v1.3.3</span><span class="d">October 26, 2026</span><span class="new">Latest</span></div><p>Charts and pictures in reports: paste a chart from Excel with Ctrl+V right between your bullets, add bar charts or pictures from the toolbar, and drag a corner to resize them.</p></div>
-    <div class="rel reveal"><div class="meta"><span class="v">v1.3.1</span><span class="d">October 26, 2026</span></div><p>Charts in Reports: add bar charts like sales by customer, paste the numbers straight from Excel, and next week's report keeps them.</p></div>
-    <div class="rel reveal"><div class="meta"><span class="v">v1.3.0</span><span class="d">October 26, 2026</span></div><p>New Style picker in Reports: choose Daybook, Modern, Corporate (with a 결재 sign-off box) or Minimal for your report's look.</p></div>
-    <div class="rel reveal"><div class="meta"><span class="v">v1.2.9</span><span class="d">October 26, 2026</span></div><p>Notification bell optimizations.</p></div>
-    <div class="rel reveal"><div class="meta"><span class="v">v1.2.6</span><span class="d">October 23, 2026</span></div><p>New bell next to the search bar shows what's still coming up today and over the next week.</p></div>
-    <div class="rel reveal"><div class="meta"><span class="v">v1.2.5</span><span class="d">October 22, 2026</span></div><p>Short tasks are centered in their boxes and no longer hide behind each other.</p></div>
-    <div class="rel reveal"><div class="meta"><span class="v">v1.2.4</span><span class="d">October 22, 2026</span></div><p>Week view: task circles now line up with their titles.</p></div>
-    <div class="rel reveal"><div class="meta"><span class="v">v1.2.3</span><span class="d">October 21, 2026</span></div><p>Korean language option in Settings. Checks for updates every hour.</p></div>
-    <div class="rel reveal"><div class="meta"><span class="v">v1.2.2</span><span class="d">October 21, 2026</span></div><p>Updates install without a stuck command window.</p></div>
-    <div class="rel reveal"><div class="meta"><span class="v">v1.2.1</span><span class="d">October 21, 2026</span></div><p>Shorter, clearer wording on the Market and Settings pages.</p></div>
-    <div class="rel reveal"><div class="meta"><span class="v">v1.2.0</span><span class="d">October 21, 2026</span></div><p>First version that updates itself.</p></div>
+  <h2>Changelog</h2>
+  <div class="log" id="log">
+    <div class="day"><div class="stamp"><span class="num">26</span><span class="words"><b>Monday</b><span>October 2026</span></span></div><div class="items"><div class="item latest"><p>Charts and pictures in reports: paste a chart from Excel with Ctrl+V right between your bullets, add bar charts or pictures from the toolbar, and drag a corner to resize them.</p><span class="ver">Version 1.3.3 <span class="tag">Latest</span></span></div><div class="item"><p>Charts in Reports: add bar charts like sales by customer, paste the numbers straight from Excel, and next week's report keeps them.</p><span class="ver">Version 1.3.1</span></div><div class="item"><p>New Style picker in Reports: choose Daybook, Modern, Corporate (with a 결재 sign-off box) or Minimal for your report's look.</p><span class="ver">Version 1.3.0</span></div><div class="item"><p>Notification bell optimizations.</p><span class="ver">Version 1.2.9</span></div></div></div>
+    <div class="day"><div class="stamp"><span class="num">23</span><span class="words"><b>Friday</b><span>October 2026</span></span></div><div class="items"><div class="item"><p>New bell next to the search bar shows what's still coming up today and over the next week.</p><span class="ver">Version 1.2.6</span></div></div></div>
+    <div class="day"><div class="stamp"><span class="num">22</span><span class="words"><b>Thursday</b><span>October 2026</span></span></div><div class="items"><div class="item"><p>Short tasks are centered in their boxes and no longer hide behind each other.</p><span class="ver">Version 1.2.5</span></div><div class="item"><p>Week view: task circles now line up with their titles.</p><span class="ver">Version 1.2.4</span></div></div></div>
+    <div class="day"><div class="stamp"><span class="num">21</span><span class="words"><b>Wednesday</b><span>October 2026</span></span></div><div class="items"><div class="item"><p>Korean language option in Settings. Checks for updates every hour.</p><span class="ver">Version 1.2.3</span></div><div class="item"><p>Updates install without a stuck command window.</p><span class="ver">Version 1.2.2</span></div><div class="item"><p>Shorter, clearer wording on the Market and Settings pages.</p><span class="ver">Version 1.2.1</span></div><div class="item"><p>First version that updates itself.</p><span class="ver">Version 1.2.0</span></div></div></div>
   </div>
+  <button class="more" type="button" onclick="document.getElementById('log').classList.add('all')">Show older updates</button>
 </div></section>
 
 <footer><div class="wrap">
-  <span>Daybook</span>
+  <span>Daybook 1.3.3 · October 26, 2026</span>
   <a href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe">Download for Windows</a>
 </div></footer>
 
 <script>
-  const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target))), { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-  // Screenshot: starts tilted, flattens as it scrolls toward the middle of the screen, and leans toward the pointer.
-  const shot = document.getElementById('shot');
-  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!calm) {
-    let base = 14, px = 0, py = 0;
-    const apply = () => {
-      shot.style.setProperty('--rx', `${base - py * 6}deg`);
-      shot.style.setProperty('--ry', `${px * 8}deg`);
-    };
-    const onScroll = () => {
-      const r = shot.getBoundingClientRect();
-      const t = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight * 0.75)));
-      base = 14 * (1 - t);
-      apply();
-    };
-    addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    if (matchMedia('(hover: hover)').matches) {
-      shot.addEventListener('pointermove', (e) => {
-        const r = shot.getBoundingClientRect();
-        px = (e.clientX - r.left) / r.width - 0.5;
-        py = (e.clientY - r.top) / r.height - 0.5;
-        shot.classList.add('live');
-        shot.style.setProperty('--gx', `${(px + 0.5) * 100}%`);
-        shot.style.setProperty('--gy', `${(py + 0.5) * 100}%`);
-        apply();
-      });
-      shot.addEventListener('pointerleave', () => { px = py = 0; shot.classList.remove('live'); apply(); });
-    }
-  }
+  // Today's date at the top, the way the app opens.
+  const t = new Date(), el = document.getElementById('today');
+  el.querySelector('.num').textContent = t.getDate();
+  el.querySelector('b').textContent = t.toLocaleDateString('en-US', { weekday: 'long' });
+  el.querySelector('.words span').textContent = t.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  el.hidden = false;
 </script>
 </body>
 </html>
