@@ -1,7 +1,7 @@
 {
-  "version": "1.3.3",
-  "date": "2026-10-26",
-  "notes": "Charts and pictures in reports: paste a chart from Excel with Ctrl+V right between your bullets, add bar charts or pictures from the toolbar, and drag a corner to resize them.",
-  "bundle": "daybook-1.3.3.bin",
-  "signature": "RmufzM4XKNBhtjDIyL42IxlGZKvMPJDVv5RJV9EaqNxdbgkexpVVZhHSMXmuElWQdn2wevfc2EDWpgPVU6h6BA=="
+  "version": "1.3.4",
+  "date": "2026-11-10",
+  "notes": "Page breaks in Reports: press Ctrl+Enter or click Page break between bullets, or point between parts in the preview to start a new page.",
+  "bundle": "daybook-1.3.4.bin",
+  "signature": "gos0PYAIy8PAgsLrEgcCz4J7phFta9WhH4+4kwQJbLx7o20j7Wdm5P729iSePqQ8jH0pjSdBMPFtpP87DZ3fCg=="
 }
