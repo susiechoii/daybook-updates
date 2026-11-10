@@ -66,6 +66,8 @@ header { padding: 56px 0 0; }
 .words { display: flex; flex-direction: column; gap: 4px; padding-bottom: 1px; }
 .words b { font: 650 24px/1 var(--display); font-stretch: 85%; letter-spacing: -.01em; }
 .words span { color: var(--muted); font-weight: 500; }
+header .stamp { margin-bottom: 36px; }
+header .stamp[hidden] { display: none; }
 h1 { margin: 0 0 16px; font: 700 clamp(42px, 6.5vw, 68px)/1.02 var(--display); font-stretch: 80%; letter-spacing: -.025em; }
 .lead { margin: 0 0 28px; font-size: 19px; color: var(--ink-2); max-width: 30em; }
 .ctas { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
@@ -74,12 +76,14 @@ h1 { margin: 0 0 16px; font: 700 clamp(42px, 6.5vw, 68px)/1.02 var(--display); f
 
 /* sections */
 section { padding: 96px 0 0; }
-h2 { margin: 0 0 24px; font: 700 30px/1 var(--display); font-stretch: 85%; letter-spacing: -.01em; }
+h2 { margin: 0 0 24px; display: flex; align-items: center; gap: 10px; font: 700 30px/1 var(--display); font-stretch: 85%; letter-spacing: -.01em; }
 
 /* features, as rows in the app's task list */
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 10px 14px; }
 .tasks { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin: 0; padding: 0; list-style: none; }
-.tasks li { padding: 14px 6px; }
+.tasks li { display: flex; gap: 14px; padding: 14px 6px; }
+.check { width: 20px; height: 20px; flex: none; margin-top: 3px; border-radius: 50%; border: 1.75px solid var(--c); }
+.count { font: 600 12.5px/1 var(--text); color: var(--muted); padding: 4px 7px; border-radius: 6px; background: var(--surface-2); letter-spacing: 0; }
 .tasks li:nth-child(n+3) { border-top: 1px solid var(--line); }
 .tasks b { display: block; font-weight: 600; font-size: 17px; }
 .tasks span { display: block; color: var(--ink-2); font-size: 15.5px; }
@@ -87,7 +91,6 @@ h2 { margin: 0 0 24px; font: 700 30px/1 var(--display); font-stretch: 85%; lette
 /* install */
 .steps { margin: 0; padding: 0 0 0 22px; color: var(--ink-2); max-width: 40em; }
 .steps li { padding-left: 6px; margin-bottom: 8px; }
-.aside { margin: 28px 0 0; color: var(--muted); font-size: 15px; }
 
 /* what's new: filled in by scripts/site-page.mjs, one block per day like the app's timeline */
 .log { display: flex; flex-direction: column; gap: 32px; }
@@ -99,6 +102,8 @@ h2 { margin: 0 0 24px; font: 700 30px/1 var(--display); font-stretch: 85%; lette
 .item { background: var(--surface); border-radius: 8px; padding: 12px 16px 12px 18px; box-shadow: inset 3px 0 0 var(--accent), inset 0 0 0 1px var(--line); }
 .item p { margin: 0 0 4px; }
 .ver { font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tag { margin-left: 6px; font-size: 12px; font-weight: 700; color: #fff; background: var(--now); border-radius: 5px; padding: 1px 7px; }
+.item.latest { box-shadow: inset 3px 0 0 var(--now), inset 0 0 0 1px var(--line); }
 .day:nth-child(n+6) { display: none; }
 .log.all .day { display: grid; }
 .more { margin: 24px 0 0 264px; padding: 0; border: 0; background: none; font: 600 15px var(--text); color: var(--accent); cursor: pointer; }
@@ -111,6 +116,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 @media (max-width: 760px) {
   .links a:not(.btn) { display: none; }
   header { padding-top: 24px; }
+  header .stamp { margin-bottom: 28px; }
   .shot { margin-top: 40px; border-radius: 8px; }
   section { padding-top: 72px; }
   .tasks { grid-template-columns: 1fr; }
@@ -133,6 +139,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 </div></nav>
 
 <header><div class="wrap">
+  <div class="stamp" id="today" hidden><span class="num"></span><span class="words"><b></b><span></span></span></div>
   <h1>Daybook</h1>
   <p class="lead">An all-in-one scheduling tool for employees.</p>
   <div class="ctas">
@@ -143,14 +150,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 </div></header>
 
 <section id="features"><div class="wrap">
-  <h2>Features</h2>
+  <h2>Features <span class="count">6</span></h2>
   <div class="panel"><ul class="tasks">
-    <li><b>Quick add</b><span>Press Ctrl+Shift+Space from any app and type something like "dentist thu 10am".</span></li>
-    <li><b>Day, week and month views</b><span>Drag an event to move it, or drag its edge to change how long it is.</span></li>
-    <li><b>Reminders</b><span>You get a Windows notification with Snooze and Done buttons.</span></li>
-    <li><b>Plan my day</b><span>Puts your tasks into the open time on your calendar.</span></li>
-    <li><b>Weekly reports</b><span>Write up your week, add charts or pictures, and save it as a PDF.</span></li>
-    <li><b>Market</b><span>Economic indicators and stock prices, updated every 6 hours.</span></li>
+    <li><i class="check" style="--c:#3446c4"></i><div><b>Quick add</b><span>Press Ctrl+Shift+Space from any app and type something like "dentist thu 10am".</span></div></li>
+    <li><i class="check" style="--c:#3b8a55"></i><div><b>Day, week and month views</b><span>Drag an event to move it, or drag its edge to change how long it is.</span></div></li>
+    <li><i class="check" style="--c:#c8436c"></i><div><b>Reminders</b><span>You get a Windows notification with Snooze and Done buttons.</span></div></li>
+    <li><i class="check" style="--c:#b07a12"></i><div><b>Scheduling</b><span>Puts your tasks into the open time on your calendar.</span></div></li>
+    <li><i class="check" style="--c:#7352be"></i><div><b>Weekly reports</b><span>Write up your week, add charts or pictures, and save it as a PDF.</span></div></li>
+    <li><i class="check" style="--c:#19817f"></i><div><b>Market</b><span>Economic indicators and stock prices, updated every 6 hours.</span></div></li>
   </ul></div>
 </div></section>
 
@@ -161,13 +168,12 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
     <li>If Windows shows a warning, click More info, then Run anyway, then Install.</li>
     <li>Daybook opens when it's done and adds itself to the Start menu.</li>
   </ol>
-  <p class="aside">After that, Daybook updates itself. Everything you put in it is saved on your computer.</p>
 </div></section>
 
 <section id="changelog"><div class="wrap">
   <h2>Changelog</h2>
   <div class="log" id="log">
-    <div class="day"><div class="stamp"><span class="num">10</span><span class="words"><b>Tuesday</b><span>November 2026</span></span></div><div class="items"><div class="item"><p>Page breaks in Reports: press Ctrl+Enter or click Page break between bullets, or point between parts in the preview to start a new page.</p><span class="ver">Version 1.3.4</span></div></div></div>
+    <div class="day"><div class="stamp"><span class="num">10</span><span class="words"><b>Tuesday</b><span>November 2026</span></span></div><div class="items"><div class="item latest"><p>Page breaks in Reports: press Ctrl+Enter or click Page break between bullets, or point between parts in the preview to start a new page.</p><span class="ver">Version 1.3.4 <span class="tag">Latest</span></span></div></div></div>
     <div class="day"><div class="stamp"><span class="num">26</span><span class="words"><b>Monday</b><span>October 2026</span></span></div><div class="items"><div class="item"><p>Charts and pictures in reports: paste a chart from Excel with Ctrl+V right between your bullets, add bar charts or pictures from the toolbar, and drag a corner to resize them.</p><span class="ver">Version 1.3.3</span></div><div class="item"><p>Charts in Reports: add bar charts like sales by customer, paste the numbers straight from Excel, and next week's report keeps them.</p><span class="ver">Version 1.3.1</span></div><div class="item"><p>New Style picker in Reports: choose Daybook, Modern, Corporate (with a 결재 sign-off box) or Minimal for your report's look.</p><span class="ver">Version 1.3.0</span></div><div class="item"><p>Notification bell optimizations.</p><span class="ver">Version 1.2.9</span></div></div></div>
     <div class="day"><div class="stamp"><span class="num">23</span><span class="words"><b>Friday</b><span>October 2026</span></span></div><div class="items"><div class="item"><p>New bell next to the search bar shows what's still coming up today and over the next week.</p><span class="ver">Version 1.2.6</span></div></div></div>
     <div class="day"><div class="stamp"><span class="num">22</span><span class="words"><b>Thursday</b><span>October 2026</span></span></div><div class="items"><div class="item"><p>Short tasks are centered in their boxes and no longer hide behind each other.</p><span class="ver">Version 1.2.5</span></div><div class="item"><p>Week view: task circles now line up with their titles.</p><span class="ver">Version 1.2.4</span></div></div></div>
@@ -181,5 +187,13 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   <a href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe">Download for Windows</a>
 </div></footer>
 
+<script>
+  // Today's date at the top, the way the app opens.
+  const t = new Date(), el = document.getElementById('today');
+  el.querySelector('.num').textContent = t.getDate();
+  el.querySelector('b').textContent = t.toLocaleDateString('en-US', { weekday: 'long' });
+  el.querySelector('.words span').textContent = t.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  el.hidden = false;
+</script>
 </body>
 </html>
