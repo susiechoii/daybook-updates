@@ -1,0 +1,25 @@
+# Builds the Mac installers on a GitHub Mac runner and adds them to a release on this repo.
+# Started by "npm run publish-installer" in the Daybook source project, which also keeps this file
+# up to date (it's scripts/mac-workflow.yml there). Free, because this repo is public.
+name: Mac installers
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release to add the .dmg files to, such as installer-1.3.5
+        required: true
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node mac/build.mjs dist
+      - run: gh release upload "$TAG" dist/*.dmg --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}

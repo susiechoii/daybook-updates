@@ -1,7 +1,7 @@
 {
-  "version": "1.3.4",
+  "version": "1.3.5",
   "date": "2026-11-10",
-  "notes": "Page breaks in Reports: press Ctrl+Enter or click Page break between bullets, or point between parts in the preview to start a new page.",
-  "bundle": "daybook-1.3.4.bin",
-  "signature": "gos0PYAIy8PAgsLrEgcCz4J7phFta9WhH4+4kwQJbLx7o20j7Wdm5P729iSePqQ8jH0pjSdBMPFtpP87DZ3fCg=="
+  "notes": "Daybook now runs on Macs.",
+  "bundle": "daybook-1.3.5.bin",
+  "signature": "XorHTuTCiyQuRkHTjw5+D1YLEr/+Wsi6aCIzqsC6sXww6gmyLFegQov8ZrH9D5MhqLEv1IC5DXht4kZ3D9d2DA=="
 }

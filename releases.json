@@ -1,5 +1,10 @@
 [
   {
+    "version": "1.3.5",
+    "date": "2026-11-10",
+    "notes": "Daybook now runs on Macs."
+  },
+  {
     "version": "1.3.4",
     "date": "2026-11-10",
     "notes": "Page breaks in Reports: press Ctrl+Enter or click Page break between bullets, or point between parts in the preview to start a new page."
