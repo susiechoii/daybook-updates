@@ -48,6 +48,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .btn { display: inline-flex; align-items: center; gap: 9px; height: 44px; padding: 0 20px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 600; font-size: 15.5px; }
 .btn:hover { text-decoration: none; background: color-mix(in srgb, var(--accent) 88%, var(--ink)); }
+.btn .os-icon { width: 17px; height: 17px; fill: currentColor; flex: none; margin-top: -2px; }
 .btn.sm { height: 34px; padding: 0 14px; border-radius: 8px; font-size: 14.5px; }
 @media (prefers-color-scheme: dark) { .btn { color: #10142a; } }
 
@@ -146,8 +147,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   <h1>Daybook</h1>
   <p class="lead">An all-in-one scheduling tool for employees.</p>
   <div class="ctas">
-    <a class="btn" href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe">Download for Windows</a>
-    <a class="btn" href="#install">Download for Mac</a>
+    <a class="btn" href="https://github.com/susiechoii/daybook-updates/releases/latest/download/Daybook-Setup.exe"><svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 3.45 9.75 2.1v9.45H0zm10.95-1.5L24 0v11.4H10.95zM0 12.6h9.75v9.45L0 20.7zm10.95 0H24V24l-13.05-1.8z"/></svg>Download for Windows</a>
+    <a class="btn" href="#install"><svg class="os-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.62 1.09zm3.38-3.07c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.81-3.53 1.82-.78.9-1.46 2.34-1.27 3.71 1.34.1 2.71-.69 3.55-1.7z"/></svg>Download for Mac</a>
     <span class="fine">Free. Works on Windows 10 and 11 and on Macs.</span>
   </div>
   <img class="shot" src="today.png" width="1863" height="1034" alt="Daybook's Today view: a timeline of the day's events next to the task list">
